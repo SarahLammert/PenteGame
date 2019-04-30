@@ -26,13 +26,15 @@ public class PenteBoardSquare
 	private Color stoneColorBT; //Stone top
 	private Color shadowGrey; //Shadow
 	private Color highLightColor; //Reflection
+	private Color winColor;
 	
-	boolean isInner = false; //If in the inner 5x5
+	private boolean isInner = false; //If in the inner 5x5
+	private boolean isWinning = false;
 	
 	//Constructor with the parameters: location of square (x, y) and size of square (w, h)
 	public PenteBoardSquare(int x, int y, int w, int h, int c, int r)
 	{
-		//Storing the parameters
+		//Storing the parameters into permanent storage
 		xLoc = x;
 		yLoc = y;
 		sWidth = w;
@@ -42,16 +44,16 @@ public class PenteBoardSquare
 		
 		
 		sColor = new Color(2, 195, 154);
-		lColor = new Color(2, 128, 144);
-		bColor = new Color(5, 102, 141);
+		bColor = new Color(43, 170, 255);
+		lColor = new Color(0, 20, 255);
 		innerColor = new Color(174, 221, 252);
-		
 		stoneColorB = new Color(70, 70, 70);
 		stoneColorBT = new Color(0, 0, 0);
 		stoneColorW = new Color(235, 235, 235);
 		stoneColorWT = new Color(255, 255, 255);
 		shadowGrey = new Color(160, 159, 159);
 		highLightColor = new Color(255, 255, 255);
+		winColor = new Color(140, 17, 255);
 		
 		
 		//Setting the state of the squares
@@ -94,6 +96,7 @@ public class PenteBoardSquare
 			g.setColor(shadowGrey);
 			g.fillOval(e-3, r+3, w, x);
 		}
+		
 		//The horizontal line color
 		g.setColor(lColor);
 	
@@ -116,21 +119,27 @@ public class PenteBoardSquare
 			g2.setStroke(new BasicStroke(2));
 			g2.setColor(highLightColor);
 			g2.drawArc(xLoc+(int)(sWidth*0.45), yLoc+12, (int)(sWidth*0.3), (int)(sHeight*0.4), 0, 90);
+			
 			g2.setStroke(new BasicStroke(1));
 			
 		}
 		
 		if(sState == PenteGameBoard.WHITESTONE)
-		{
-			g2.setColor(shadowGrey);
-			g2.fillOval(e-3, r+3, w, x);
-			
-			
+		{	
 			g2.setColor(stoneColorW);
 			g2.fillOval(e, r, w, x);
 			
 			g2.setColor(stoneColorWT);
 			g2.fillOval(e+3, r+3, w-4, x-4);
+		}
+		
+		if(isWinning)
+		{
+			g2.setStroke(new BasicStroke(4));
+			g2.setColor(winColor);
+			
+			g2.drawOval(e+2, r+2, w-1, x-1);
+			g2.setStroke(new BasicStroke(1));
 		}
 	}
 	
@@ -186,14 +195,9 @@ public class PenteBoardSquare
 		sHeight = h;
 	}
 	
-	public int getsState()
+	public int getState()
 	{
 		return sState;
-	}
-	
-	public void setsState(int sS)
-	{
-		sState = sS;
 	}
 
 	public int getsRow() {
@@ -210,5 +214,9 @@ public class PenteBoardSquare
 
 	public void setsCol(int c) {
 		sCol = c;
+	}
+
+	public void setWinning(boolean isWinning) {
+		this.isWinning = isWinning;
 	}
 }
