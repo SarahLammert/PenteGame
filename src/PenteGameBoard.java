@@ -39,24 +39,21 @@ public class PenteGameBoard extends JPanel implements MouseListener, ActionListe
 	
 	private Computer c1 = null;
 	private Computer c2 = null;
-	
-	//Constructor with the parameters: width and height of the board
+
 	public PenteGameBoard(int w, int h, PenteScore sb)
 	{
-		//Storing the parameters
 		bWidth = w;
 		bHeight = h;
 		myScoreBoard = sb;
 		tCount = 1;
+		
 		player1IsComputer = false;
 		player2IsComputer = false;
 		gameOver = false;
 		
-		//Setting the PenteGameboard
 		this.setSize(bWidth, bHeight);
 		this.setBackground(Color.CYAN);
 		
-		//Determining the size of the square width and height based on the number of squares of on the side
 		squareW = bWidth/NUM_SQUARES_SIDE;
 		squareH = bHeight/NUM_SQUARES_SIDE;
 		
