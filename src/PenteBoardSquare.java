@@ -219,4 +219,8 @@ public class PenteBoardSquare
 	public void setWinning(boolean isWinning) {
 		this.isWinning = isWinning;
 	}
+	public boolean getIsInner()
+	{
+		return isInner;
+	}
 }

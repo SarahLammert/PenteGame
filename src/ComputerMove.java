@@ -1,17 +1,21 @@
-public class ComputerMove
+public class ComputerMove implements Comparable<Object>
 {
 	private int priority = 0;
 	private int col = -1, row = -1;
-	private int moveType = 0;
 	
 	public int getPriority()
 	{
 		return priority;
 	}
-
-	public void setPriority(int priority)
+	
+	public Integer getPriorityInt()
 	{
-		this.priority = priority;
+		return new Integer(priority);
+	}
+
+	public void setPriority(int p)
+	{
+		priority = p;
 	}
 
 	public int getCol()
@@ -19,9 +23,9 @@ public class ComputerMove
 		return col;
 	}
 
-	public void setCol(int col)
+	public void setCol(int c)
 	{
-		this.col = col;
+		col = c;
 	}
 
 	public int getRow()
@@ -29,18 +33,19 @@ public class ComputerMove
 		return row;
 	}
 
-	public void setRow(int row)
+	public void setRow(int r)
 	{
-		this.row = row;
+		row = r;
+	}
+	public String toString()
+	{
+		return "Move at: " + col + ", " + row + ", " + priority;
 	}
 
-	public int getMoveType()
+	@Override
+	public int compareTo(Object o)
 	{
-		return moveType;
-	}
-
-	public void setMoveType(int moveType)
-	{
-		this.moveType = moveType;
+		int comparePriority = ((ComputerMove)o).getPriority();
+		return comparePriority-this.priority;
 	}
 }

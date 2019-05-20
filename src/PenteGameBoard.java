@@ -19,7 +19,7 @@ public class PenteGameBoard extends JPanel implements MouseListener, ActionListe
 	public static final int PLAYER2_TURN = -1;
 	public static final int NUM_SQUARES_SIDE = 19;
 	public static final int MAX_CAPTURES = 10;
-	public static final int SLEEP_TIME = 250;
+	public static final int SLEEP_TIME = 500;
 	
 	private int bWidth, bHeight;
 	private int squareW, squareH;
@@ -77,7 +77,6 @@ public class PenteGameBoard extends JPanel implements MouseListener, ActionListe
 		myScoreBoard.getResetButton().addActionListener(this);
 		
 	}
-	//Method to draw the game board by overriding paintComponent
 	public void paintComponent(Graphics g)
 	{
 		g.setColor(Color.CYAN);
@@ -230,6 +229,7 @@ public class PenteGameBoard extends JPanel implements MouseListener, ActionListe
 			   count += 2;
 			   board[p.getsCol()+(b*l)][p.getsRow()+(y*s)].setState(PenteGameBoard.EMPTY);
 			   board[p.getsCol()+(c*l)][p.getsRow()+(z*s)].setState(PenteGameBoard.EMPTY);
+			   this.paintASAP();
 			}
 		}
 		catch(ArrayIndexOutOfBoundsException e)
@@ -471,5 +471,24 @@ public class PenteGameBoard extends JPanel implements MouseListener, ActionListe
 	public void paintASAP()
 	{
 		this.paintImmediately(0, 0, bWidth, bHeight);
+	}
+	public int getTurn()
+	{
+		return tCount;
+	}
+	public PenteBoardSquare getBoardSquare(int col, int row)
+	{
+		return board[col][row];
+	}
+	public int getCaptures(int sC)
+	{
+		if(sC == BLACKSTONE)
+		{
+			return p1Captures;
+		}
+		else 
+		{
+			return p2Captures;
+		}
 	}
 }
