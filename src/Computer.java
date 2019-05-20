@@ -138,6 +138,13 @@ public class Computer
 											{
 												setAnyMove(col + (rL * 4), row + (uD * 4), OPP_THREE_IN_A_ROW_GUARDED);
 											}
+											else if(myGame.getBoard()[col + (rL * 4)][row + (uD * 4)].getState() == myStone)
+											{
+												if(myGame.getBoard()[col + (rL * 5)][row + (uD * 5)].getState() == PenteGameBoard.EMPTY)
+												{
+													setAnyMove(col + (rL * 5), row + (uD * 5), OPP_FOUR_IN_A_ROW_GUARDED);
+												}
+											}
 										}
 									}
 								}
@@ -188,17 +195,6 @@ public class Computer
 												setAnyMove(col + (rL * 2), row + (uD * 2), OPP_BLOCKING_OF_HIGH_IMPORTANCE);
 											}
 										}
-									}
-									else if(myGame.getBoard()[col + (rL * 2)][row + (uD * 2)].getState() == myStone * -1)
-									{
-										if(myGame.getBoard()[col + (rL * 3)][row + (uD * 3)].getState() == myStone * -1)
-										{
-											if(myGame.getBoard()[col + (rL * 4)][row + (uD * 4)].getState() == PenteGameBoard.EMPTY)
-											{
-												setAnyMove(col + (rL * 4), row + (uD * 4), OPP_FOUR_IN_A_ROW_GUARDED);
-											}
-										}
-										
 									}
 								}
 								else if(myGame.getBoard()[col + rL][row + uD].getState() == myStone)
