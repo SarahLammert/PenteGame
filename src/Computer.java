@@ -59,6 +59,13 @@ public class Computer
 		else
 		{
 			newMove = generateRandomMove();
+			if(myGame.getTurn() == 3)
+			{
+				while(myGame.getBoard()[newMove[0]][newMove[1]].getIsInner())
+				{
+					newMove = generateRandomMove();
+				}
+			}
 		}
 
 		try
@@ -273,7 +280,7 @@ public class Computer
 				}
 				if(myGame.getCaptures(myStone * -1) == 8 && p == MY_TWO_IN_A_ROW_GUARDED)
 				{
-					nM.setPriority(p + 40);
+					nM.setPriority(p + 20);
 				}
 				allMoves.add(nM);
 			}
