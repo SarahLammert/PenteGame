@@ -43,7 +43,7 @@ public class Computer
 
 		findAllMoves();
 		sortAllPriorities();
-		printPriorities();
+		//printPriorities();
 
 		if(allMoves.size() > 0)
 		{
@@ -52,6 +52,7 @@ public class Computer
 			{
 				ourMove = allMoves.get((int)(allMoves.size()*(Math.random())));
 			}
+			System.out.println(ourMove.getPriority());
 			newMove[0] = ourMove.getCol();
 			newMove[1] = ourMove.getRow();
 		}
@@ -235,25 +236,22 @@ public class Computer
 			ComputerMove nM = new ComputerMove();
 			nM.setCol(c);
 			nM.setRow(r);
+			nM.setPriority(p);
 			if(myGame.getCaptures(myStone) == 8 && p == MY_CAPTURE)
 			{
 				nM.setPriority(WIN);
 			}
-			else if(myGame.getCaptures(myStone) == 6 && p == MY_CAPTURE)
+			if(myGame.getCaptures(myStone) == 6 && p == MY_CAPTURE)
 			{
 				nM.setPriority(p + 20);
 			}
-			else if(myGame.getCaptures(myStone * -1) == 6 && p == MY_TWO_IN_A_ROW_GUARDED)
+			if(myGame.getCaptures(myStone * -1) == 6 && p == MY_TWO_IN_A_ROW_GUARDED)
 			{
 				nM.setPriority(p + 20);
 			}
-			else if(myGame.getCaptures(myStone * -1) == 8 && p == MY_TWO_IN_A_ROW_GUARDED)
+			if(myGame.getCaptures(myStone * -1) == 8 && p == MY_TWO_IN_A_ROW_GUARDED)
 			{
 				nM.setPriority(p + 40);
-			}
-			else
-			{
-				nM.setPriority(p);
 			}
 			allMoves.add(nM);
 		}
@@ -264,25 +262,22 @@ public class Computer
 				ComputerMove nM = new ComputerMove();
 				nM.setCol(c);
 				nM.setRow(r);
-				if(myGame.getCaptures(myStone) == 8 && nM.getPriority() == MY_CAPTURE)
+				nM.setPriority(p);
+				if(myGame.getCaptures(myStone) == 8 && p == MY_CAPTURE)
 				{
 					nM.setPriority(WIN);
 				}
-				else if(myGame.getCaptures(myStone) == 6 && nM.getPriority() == MY_CAPTURE)
+				if(myGame.getCaptures(myStone) == 6 && p == MY_CAPTURE)
 				{
 					nM.setPriority(p + 20);
 				}
-				else if(myGame.getCaptures(myStone * -1) == 6 && nM.getPriority() == MY_TWO_IN_A_ROW_GUARDED)
+				if(myGame.getCaptures(myStone * -1) == 6 && p == MY_TWO_IN_A_ROW_GUARDED)
 				{
 					nM.setPriority(p + 20);
 				}
-				else if(myGame.getCaptures(myStone * -1) == 8 && nM.getPriority() == MY_TWO_IN_A_ROW_GUARDED)
+				if(myGame.getCaptures(myStone * -1) == 8 && p == MY_TWO_IN_A_ROW_GUARDED)
 				{
 					nM.setPriority(p + 40);
-				}
-				else
-				{
-					nM.setPriority(p);
 				}
 				allMoves.add(nM);
 			}
