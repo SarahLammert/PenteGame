@@ -138,7 +138,7 @@ public class Computer
 											{
 												setAnyMove(col + (rL * 4), row + (uD * 4), OPP_THREE_IN_A_ROW_GUARDED);
 											}
-											else if(myGame.getBoard()[col + (rL * 4)][row + (uD * 4)].getState() == myStone)
+											else if(myGame.getBoard()[col + (rL * 4)][row + (uD * 4)].getState() == myStone * -1)
 											{
 												if(myGame.getBoard()[col + (rL * 5)][row + (uD * 5)].getState() == PenteGameBoard.EMPTY)
 												{
